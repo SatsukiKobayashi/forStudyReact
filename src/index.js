@@ -40,3 +40,44 @@ const arr8 = arr4;
 console.log(`arr8=> ${arr8}`);
 arr8[0] = 100; //狙い通りarr8の最初のオブジェクトの中身が書き換わる
 console.log(`arr4=> ${arr4}`); //参照元が同じなので、arr4の中身も書き換わってしまう
+
+//公式より
+const foo = (x, y, z) => console.log(x, y, z);
+var args = [0, 1, 2];
+//applyは配列を使う関数を呼び出す際に引数に配列を渡すことができる関数
+//第一引数=処理したいオブジェクト(this, windowなど)
+//第二引数=渡したい配列
+foo.apply(null, args);
+foo(...args);
+
+var [x, y, ...rest] = [1, 2, 3, 4];
+console.log(x, y, rest);
+
+//配列の代入
+//スプレッド演算子を使用すると、配列の拡張バージョンを別の配列に簡単に代入できます
+var list = [1, 2];
+list = [...list, 3, 4]; //listの中身を一気に定義
+console.log(list);
+
+//間も使える
+var list2 = [...list]; //listの中身と同じものを用意する
+list2 = [0, ...list2, 5, 6]; //間をスプレッド演算子で埋める
+console.log(list2);
+
+const point2D = { x: 1, y: 2 };
+const point3D = { ...point2D, z: 3 };
+console.log(point3D);
+
+//最初に来るものは、後で来るものによって上書きされます
+//(多分変数名かぶってるやつは後勝ってことだと思う)
+const point4D = { ...point2D };
+const anotherPoint3D = { x: 5, z: 4, ...point4D };
+console.log(anotherPoint3D);
+const yetAnotherPoint3D = { ...point4D, x: 5, z: 4 };
+console.log(yetAnotherPoint3D);
+
+const foo2 = { a: 1, b: 2, c: 0 };
+const bar = { c: 1, d: 2 };
+//foo2とbarの統合
+const foobar = { ...foo2, ...bar };
+console.log(foobar);
