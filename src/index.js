@@ -1,11 +1,9 @@
-import "./styles.css";
+const sayHello = (name) => console.log(`Hello ${name}!`);
+// sayHello("neko");
+//これはundefinedになる
+sayHello(); //Hello undefined!
 
-document.getElementById("app").innerHTML = `
-<h1>Hello Vanilla!</h1>
-<div>
-  We use the same configuration as Parcel to bundle this sandbox, you can find more
-  info about Parcel 
-  <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>.
-</div>
-<p>test</p>
-`;
+//setting default value at name
+const sayGoodbye = (name = "ゲスト") => console.log(`Hello ${name}!`);
+sayGoodbye(); //これは初期値の"ゲスト"が設定される.
+sayGoodbye("neko"); //これは引数で渡された値が設定される。
